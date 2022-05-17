@@ -90,7 +90,6 @@ int main(int nargs, char *argv[]){
   sys->depth = 5;
   sys->mesh_flag = 1;
   sprintf(density,"1");
-  epsilon = epsilon2/epsilon1;
   double bulk_strength = 0.15;
   //kappa = sqrt(8.430325455*bulk_strength/epsilon2);
   kappa = 0.1257;
@@ -116,8 +115,8 @@ int main(int nargs, char *argv[]){
         case 'd': strcpy(density,argv[i]+3);
           break;
         case 'e':
-          if ( argv[i][3] == '1' ) epsilon1 = atof( argv[i]+4 );
-          if ( argv[i][3] == '2' ) epsilon2 = atof( argv[i]+4 );
+          if ( argv[i][4] == '1' ) epsilon1 = atof( argv[i]+6 );
+          if ( argv[i][4] == '2' ) epsilon2 = atof( argv[i]+6 );
           break;
         case 'k': kappa = atof( argv[i]+3 );
           break;
@@ -128,6 +127,7 @@ int main(int nargs, char *argv[]){
       strcpy(panelfile,argv[i]);
     }
 
+  epsilon = epsilon2/epsilon1;
   if ( panelfile[0] == 0 ) {
     printf("\n Name of the panel file > ");
     if ( scanf("%s",panelfile) < 1 ) {
@@ -152,7 +152,7 @@ int main(int nargs, char *argv[]){
     sys->depth, order, sys->maxSepRatio, sys->maxQuadOrder );
   printf("GMRES variables: tol=%1.e arnoldiSz=%ld maxIt=%ld\n",
     tolpar, arnoldiSz, numItr);
-  printf("kappa=%f, eps1=%.0f, eps2=%.0f\n", kappa, epsilon1, epsilon2);
+  printf("kappa=%f, eps1=%f, eps2=%f\n", kappa, epsilon1, epsilon2);
   //printf("----------------------------\n");
 
 
