@@ -22,4 +22,4 @@ coulomb: coulomb.o $(OBJ)
 	$(LD) -o coulomb coulomb.o $(OBJ) $(LIBMATH) $(LIBSBLAS)
 
 clean:
-	\rm -f *.o
+	\rm -f *.o coulomb
