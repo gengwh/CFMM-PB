@@ -16,34 +16,34 @@ Acknowlegement: The work of W.G. and J.C. was supported by NSF grant DMS-1418957
 
 5. [options] are specified as below (one might specify the values followed "=" to replace the default value as shown):
 
--S=0.8
-the percentage of how much FMM is used
+    -S=0.8
+    the percentage of how much FMM is used
 
--o=1e-6
-tolerance for GMRES
+    -o=1e-6
+    tolerance for GMRES
 
--p=-1
-Taylor expansion order, negative with adaptive FMM
+    -p=-1
+    Taylor expansion order, negative with adaptive FMM
 
--q=1
-Quadrature order
+    -q=1
+    Quadrature order
 
--t=5
-tree level
+    -t=5
+    tree level
 
--d=1
-MSMS density
+    -d=1
+    MSMS density
 
--eps1=1 
--eps2=80
-dielectric constant eps1 inside, eps2 outside
+    -eps1=1 
+    -eps2=80
+    dielectric constant eps1 inside, eps2 outside
 
--k=0.1275
-kappa (the inverse ionic strength)
+    -k=0.1275
+    kappa (the inverse ionic strength)
 
--m=1 (surface type)
-1 chooses MSMS
-2 chooses NanoShaper
+    -m=1 (surface type)
+    1 chooses MSMS
+    2 chooses NanoShaper
 
 
 
