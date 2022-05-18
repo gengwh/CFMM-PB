@@ -103,4 +103,5 @@ int PtVfmm(double *pot, double *sgm) {
   //for ( i=0; i<maxnPnls; i++ ) free(matrixA[i]);
   //free(matrixA);
   //exit(0);
+return 0;
 }
