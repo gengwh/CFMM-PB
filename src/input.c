@@ -75,7 +75,8 @@ panel *loadPanel(char *panelfile, char *density, int *numSing, ssystem *sys) {
       sys->nChar++;
     }
   }
-  printf("Number of Atoms = %d\n",sys->nChar);
+  printf("PDB ID = %s\n",panelfile);
+  printf("#Atoms = %d\n",sys->nChar);
   fclose(fp);
   fclose(wfp);
 
