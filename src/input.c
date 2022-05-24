@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include "gkGlobal.h"
 #include "gk.h"
@@ -44,7 +45,7 @@ panel *loadPanel(char *panelfile, char *density, int *numSing, ssystem *sys) {
   char fpath[256], fname[256];
   FILE *fp, *wfp;
 
-  char c,c1[10],c2[10],c3[10],c4[10],c5[10];
+  char c,c1[10],c2[10],c3[10],c4[10],c5[10],c6[10];
   double a1,a2,a3,b1,b2,b3;//a_norm,r0_norm,v0_norm;
   int i1,i2,i3,j1,j2,j3,ierr,iface[3],jface[3],ialert;
   double den,prob_rds,xx[3],yy[3],face[3][3],tface[3][3],s_area;
@@ -62,11 +63,19 @@ panel *loadPanel(char *panelfile, char *density, int *numSing, ssystem *sys) {
   fp=fopen(fname,"r");
   sprintf(fname,"%s%s.xyzr",fpath,panelfile);
   wfp=fopen(fname,"w");
-  while(fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf",c1,c2,c3,
-               c4,c5,&a1,&a2,&a3,&b1,&b2) != EOF){
-    fprintf(wfp,"%f %f %f %f\n",a1,a2,a3,b2);
-    sys->nChar++;
+  /* new version of pqr file, 11 entries per line */
+  while(fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf %s",c1,c2,c3,
+               c4,c5,&a1,&a2,&a3,&b1,&b2,c6) != EOF){
+  /* old version of pqr file, 10 entries per line */
+  /* while(fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf",c1,c2,c3,
+               c4,c5,&a1,&a2,&a3,&b1,&b2) != EOF){ */
+    if (strcmp(c1,"ATOM")==0)
+    {
+      fprintf(wfp,"%f %f %f %f\n",a1,a2,a3,b2);
+      sys->nChar++;
+    }
   }
+  printf("Number of Atoms = %d\n",sys->nChar);
   fclose(fp);
   fclose(wfp);
 
@@ -75,12 +84,19 @@ panel *loadPanel(char *panelfile, char *density, int *numSing, ssystem *sys) {
   sprintf(fname,"%s%s.pqr",fpath,panelfile);
   fp=fopen(fname,"r");
   for ( i=0; i<sys->nChar; i++ ){
-    ierr=fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf",c1,c2,c3,
-                 c4,c5,&a1,&a2,&a3,&b1,&b2);
-    sys->pos[3*i]=a1;
-    sys->pos[3*i+1]=a2;
-    sys->pos[3*i+2]=a3;
-    sys->chr[i]=b1;
+    /* new version of pqr file, 11 entries per line */
+    ierr=fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf %s",c1,c2,c3,
+                 c4,c5,&a1,&a2,&a3,&b1,&b2,c6);
+    /* old version of pqr file, 10 entries per line */
+    /*ierr=fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf",c1,c2,c3,
+                 c4,c5,&a1,&a2,&a3,&b1,&b2);*/
+    if (strcmp(c1,"ATOM")==0)
+    {
+      sys->pos[3*i]=a1;
+      sys->pos[3*i+1]=a2;
+      sys->pos[3*i+2]=a3;
+      sys->chr[i]=b1;
+    }
   }
   fclose(fp);
 
