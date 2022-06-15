@@ -29,7 +29,7 @@ Acknowlegement: The work of W.G. and J.C. was supported by NSF grant DMS-1418957
     Quadrature order
 
     -t=5
-    tree level
+    tree level. Note this parameter needs to be increased when mesh is refined. The general rule of thumb is that when the number of panels are increased by every four times, the trea level should be increased by 1. Also, keeping the maximum number of elements in finest cluster consistent gives hints about tree level value.       
 
     -d=1
     MSMS density
