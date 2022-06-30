@@ -38,7 +38,7 @@ Acknowlegement: The work of W.G. and J.C. was supported by NSF grant DMS-1418957
     -eps2=80
     dielectric constant eps1 inside, eps2 outside
 
-    -k=0.1275
+    -k=0.1257
     kappa (the inverse ionic strength)
 
     -m=1 (surface type)
