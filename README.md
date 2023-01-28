@@ -3,7 +3,7 @@ This Repo publishes and maintains the source code for A Cartesian FMM-accelerate
 
 Reference: https://arxiv.org/abs/2110.13778
 
-Acknowlegement: The work of W.G. and J.C. was supported by NSF grant DMS-1418957, DMS-1819193, SMU new faculty startup fund and SMU center for scientific computing. The work of J.T. is in part funded by NSF grant DMS-1720431.
+Acknowlegement: The work of W.G. and J.C. was supported by NSF grant DMS-2110869, DMS-1819193, SMU new faculty startup fund and SMU center for scientific computing. The work of J.T. is in part funded by NSF grant DMS-1720431.
 
 ## Usage
 1. Install the triangular surface generators MSMS (https://ccsb.scripps.edu/msms/downloads/) and/or NanoShaper (https://gitlab.iit.it/SDecherchi/nanoshaper); Make sure the binary executive file of one or both were added into the system path (e.g. modify .bashrc file for Linux or .bash_profile file for MacOS)
