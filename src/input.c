@@ -64,11 +64,11 @@ panel *loadPanel(char *panelfile, char *density, int *numSing, ssystem *sys) {
   sprintf(fname,"%s%s.xyzr",fpath,panelfile);
   wfp=fopen(fname,"w");
   /* new version of pqr file, 11 entries per line */
-  while(fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf %s",c1,c2,c3,
-               c4,c5,&a1,&a2,&a3,&b1,&b2,c6) != EOF){
+  /*while(fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf %s",c1,c2,c3,
+               c4,c5,&a1,&a2,&a3,&b1,&b2,c6) != EOF){ */
   /* old version of pqr file, 10 entries per line */
-  /* while(fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf",c1,c2,c3,
-               c4,c5,&a1,&a2,&a3,&b1,&b2) != EOF){ */
+    while(fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf",c1,c2,c3,
+               c4,c5,&a1,&a2,&a3,&b1,&b2) != EOF){ 
     if (strcmp(c1,"ATOM")==0)
     {
       fprintf(wfp,"%f %f %f %f\n",a1,a2,a3,b2);
@@ -86,11 +86,11 @@ panel *loadPanel(char *panelfile, char *density, int *numSing, ssystem *sys) {
   fp=fopen(fname,"r");
   for ( i=0; i<sys->nChar; i++ ){
     /* new version of pqr file, 11 entries per line */
-    ierr=fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf %s",c1,c2,c3,
-                 c4,c5,&a1,&a2,&a3,&b1,&b2,c6);
+    /*ierr=fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf %s",c1,c2,c3,
+                 c4,c5,&a1,&a2,&a3,&b1,&b2,c6);*/
     /* old version of pqr file, 10 entries per line */
-    /*ierr=fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf",c1,c2,c3,
-                 c4,c5,&a1,&a2,&a3,&b1,&b2);*/
+    ierr=fscanf(fp,"%s %s %s %s %s %lf %lf %lf %lf %lf",c1,c2,c3,
+                 c4,c5,&a1,&a2,&a3,&b1,&b2);
     if (strcmp(c1,"ATOM")==0)
     {
       sys->pos[3*i]=a1;
@@ -108,7 +108,7 @@ panel *loadPanel(char *panelfile, char *density, int *numSing, ssystem *sys) {
     //printf("%s\n",fname);
     ierr=system(fname);
     sprintf(fname,"rm msms.output");
-    ierr=system(fname);
+    //ierr=system(fname);
   } else if ( mesh_flag == 2 ) {
     wfp = fopen("surfaceConfiguration.prm", "w");
     fprintf(wfp, "Grid_scale = %s\n", density);

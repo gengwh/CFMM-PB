@@ -4,8 +4,7 @@
  * usage:
  *   coulomb [options] panelfile [options]
  *
- * Based on Tausch's Code
- * Copyright Jiahui Chen
+ * Copyright: Jiahui Chen, Weihua Geng, Johannes Tausch
  *
  */
 #include <stdio.h>
